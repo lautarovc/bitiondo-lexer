@@ -79,15 +79,14 @@ sub to_str {
 
 
 	if ($type == "error")
-		puts "Error: Se encontró un caracter inesperado `$str` en la Línea $line, Columna $column."
+		printf "Error: Se encontró un caracter inesperado `$str` en la Línea $line, Columna $column."
 
 
 	elsif ($self->hasValue())
-		puts "$type at line $line, column $column with value `$str`"
+		printf "$type at line $line, column $column with value `$str`"
 
 	else
-		puts "$type at line $line, column $column"
-
+		printf "$type at line $line, column $column"
 }
 
 1;
