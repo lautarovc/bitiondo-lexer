@@ -45,7 +45,7 @@ sub _build_type {
 					  "semicolon" => /\A\;/,
 					  "comma" => /\A\,/,
 					  "left parenthesis" => /\A\(/,
-					  "right parenthesis" => /\A\)/)
+					  "right parenthesis" => /\A\)/);
 
 	foreach $key (keys %regexHash) {
 		$regex = $regexHash{$key};
@@ -66,27 +66,27 @@ sub _build_type {
 		}
 	}
 
-	return "error"
+	return "error";
 }
 
 sub to_str {
 
 	$self = shift;
-	$type = $self->get_type()
-	$str = $self->str()
-	$line = $self->line()
-	$column = $self->column()
+	$type = $self->get_type();
+	$str = $self->str();
+	$line = $self->line();
+	$column = $self->column();
 
 
 	if ($type == "error")
-		printf "Error: Se encontró un caracter inesperado `$str` en la Línea $line, Columna $column."
+		printf "Error: Se encontró un caracter inesperado `$str` en la Línea $line, Columna $column.";
 
 
 	elsif ($self->hasValue())
-		printf "$type at line $line, column $column with value `$str`"
+		printf "$type at line $line, column $column with value `$str`";
 
 	else
-		printf "$type at line $line, column $column"
+		printf "$type at line $line, column $column";
 }
 
 1;
