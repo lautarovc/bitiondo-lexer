@@ -1,3 +1,12 @@
+
+# Lexer.pm
+
+# Descripcion: Lexer del lenguaje de programacion Bitiondo 
+
+# Autores:
+# 	Lautaro Villalon. 12-10427
+# 	Yarima Luciani. 13-10770
+
 package Lexer;
 use Moose;
 use Token;
@@ -56,11 +65,12 @@ sub readFile {
 
 			# CALCULO DE LA POSICION DEL NUEVO TOKEN Y COMPARACION CON SUPER REGEX
 			my $prevColumn = length($tmp->str()) + $tmp->column();
-			my $relPosition = $prevLine =~ /$superRegex/x;
+			my $match = $prevLine =~ /$superRegex/x;
+			my $relPosition = $-[-1];
 
 			# VERIFICACION DE ERROR
 
-			if ($relPosition == 0) {
+			if ($match == 0) {
 				$error = 1;
 				$tmp = Token->new(str => substr($prevLine, 0, 1), line => $i+1, column => $prevColumn);
 				push(@errorList, $tmp);
@@ -101,28 +111,6 @@ sub readFile {
 
 	$self->tokens(\@tokensClean);
 	$self->errorList(\@errorList);
-}
-
-
-sub nextToken {
-	my $self = shift;
-	my $tokens = $self->tokens();
-	my $counter = $self->counter();
-
-
-	my $token = $$tokens[$counter];
-	$self->counter($counter+1);
-
-	return $token;
-}
-
-sub isNext {
-	my $self = shift;
-	my $tokens = $self->tokens();
-	my $counter = $self->counter();
-	my $tokensLen = @$tokens;
-
-	return ($counter < $tokensLen);
 }
 
 1;

@@ -1,0 +1,8 @@
+begin
+int caca = 150
+# Soy un comentario, no un token
+
+while(true)
+caca = caca + 1
+
+end
