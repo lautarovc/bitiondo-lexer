@@ -5,9 +5,8 @@ has str => (is => 'rw');
 has line => (is => 'rw');
 has column => (is => 'rw');
 has hasValue => (is => 'rw', init_arg => 0);
-has type => (reader => 'get_type', builder =>'_build_type');
 
-sub _build_type {
+sub type {
 	my $self = shift;
 
 	my %regexHash = ("Spaces" => '\A(\s)+',
@@ -72,18 +71,18 @@ sub _build_type {
 sub to_str {
 
 	my $self = shift;
-	my $type = $self->get_type();
+	my $type = $self->type();
 	my $str = $self->str();
 	my $line = $self->line();
 	my $column = $self->column();
 
 
 	if ($type eq "error") {
-		printf "Error: Se encontró un caracter inesperado `$str` en la Línea $line, Columna $column.\n";
+		return "Error: Se encontró un caracter inesperado `$str` en la Línea $line, Columna $column.\n";
 	} elsif ($self->hasValue()) {
-		printf "$type at line $line, column $column with value `$str`\n";
+		return "$type at line $line, column $column with value `$str`\n";
 	} else{
-		printf "$type at line $line, column $column\n";
+		return "$type at line $line, column $column\n";
 	}
 }
 
