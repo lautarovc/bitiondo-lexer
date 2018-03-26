@@ -24,7 +24,9 @@ https://www.perl.org/get.html
 
 Los módulos se pueden instalar a través de los siguientes comandos:
 * Utilizando el módulo CPAN:
-	perl -MCPAN -e "install Moose/Tie::IxHash"
+
+		perl -MCPAN -e "install Moose/Tie::IxHash"
 * Utilizando el shell de CPAN:
-	cpan
-	cpan[1]> install Moose/Tie::IxHash
+
+		cpan
+		cpan[1]> install Moose/Tie::IxHash
